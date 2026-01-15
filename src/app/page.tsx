@@ -8,6 +8,7 @@ import { useStreamPlayer } from '@/lib/useStreamPlayer';
 import { StreamEvent } from '@/lib/parser';
 import { Switch } from '@/components/ui/switch';
 import { LayoutDashboard, MessageSquare } from 'lucide-react';
+import { ModeToggle } from '@/components/mode-toggle';
 
 export default function AIExplorePage() {
   const [events, setEvents] = useState<StreamEvent[]>([]);
@@ -31,9 +32,9 @@ export default function AIExplorePage() {
   const hasEvents = events.length > 0;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 font-sans">
-      <div className="max-w-7xl mx-auto">
-        <header className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 lg:p-8 pb-4 border-b bg-white dark:bg-slate-950 sticky top-0 z-20 shadow-sm">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 font-sans transition-colors duration-300">
+      <div className="mx-auto">
+        <header className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 lg:p-8 pb-4 border-b bg-white dark:bg-slate-950 sticky top-0 z-20 shadow-sm transition-colors duration-300">
           <div className="flex items-center gap-4">
             <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
               AI Explore
@@ -61,6 +62,10 @@ export default function AIExplorePage() {
             <div className="h-6 w-px bg-border" />
 
             <StatusIndicator status={status} />
+
+            <div className="h-6 w-px bg-border" />
+
+            <ModeToggle />
           </div>
         </header>
 

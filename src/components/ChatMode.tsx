@@ -39,7 +39,7 @@ export function ChatMode({
     }, [currentText, status]);
 
     return (
-        <div className="max-w-3xl mx-auto flex flex-col h-[calc(100vh-140px)] relative">
+        <div className="mx-auto flex flex-col h-[calc(100vh-140px)] relative">
             {/* Chat Area - Takes available space */}
             <div className="flex-1 overflow-y-auto space-y-6 pr-4 pb-4">
 
