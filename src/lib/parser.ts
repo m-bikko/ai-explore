@@ -42,3 +42,23 @@ export function extractVegaSpec(text: string): Record<string, any> | null {
 
   return null;
 }
+
+export function extractThinkingProcess(text: string) {
+  // Regex to capture content between <thought> tags (handling unclosed for streaming)
+  // Also supports <think> for DeepSeek compatibility
+  const thoughtMatch = text.match(/<(thought|think)>([\s\S]*?)(<\/(thought|think)>|$)/);
+
+  if (thoughtMatch) {
+    const fullMatch = thoughtMatch[0];
+    const thoughtContent = thoughtMatch[2];
+    const isClosed = !!thoughtMatch[3] && thoughtMatch[3].startsWith('</');
+
+    // Everything AFTER the thought block is the main content
+    // If unclosed, main content is empty
+    const mainContent = text.replace(fullMatch, '');
+
+    return { hasThought: true, thought: thoughtContent, content: mainContent, isClosed };
+  }
+
+  return { hasThought: false, thought: '', content: text, isClosed: true };
+}

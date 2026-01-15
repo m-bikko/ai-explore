@@ -39,7 +39,9 @@ export function VegaPreview({ currentText, minified = false }: VegaPreviewProps)
             // Check if the spec already has data
             const hasData = extractedSafe.data && (extractedSafe.data.values || extractedSafe.data.url);
 
-            let specWithData: any;
+
+            // Determine type for spec
+            let specWithData: Record<string, any>;
 
             if (hasData) {
                 specWithData = {
